@@ -1,0 +1,24 @@
+{% extends 'person_app/base.html' %} {% block content %}
+
+<body>
+  <br />
+  <br />
+
+  <div class="text-center">
+    <h3>Person Entity CRUD Application</h3>
+
+    <br />
+
+    <h5>Keep track of your records from anywhere!</h5>
+
+    <hr />
+    <br />
+
+    <a class="btn btn-primary" type="button" href="{% url 'register' %}">
+      Create your account &nbsp;
+      <i class="fa fa-user-plus" aria-hidden="true"></i>
+    </a>
+  </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'person_app/base.html' %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+<body>
+  <div class="container bg-light shadow-md p-5 form-layout">
+
+        <h3>Record created successfully</h3>
+
+    <hr />
+    <br />
+    
+    <form method="POST" autocomplete="off">
+      {% csrf_token %} First Name : {{serialized_data.first_name}}
+
+      <br />
+
+      Last Name : {{serialized_data.last_name}}
+
+      <br />
+
+      Age : {{serialized_data.age}}
+
+      <br />
+
+      Email ID : {{serialized_data.email_id}}
+
+      <br />
+
+      Phone Number : {{serialized_data.phone_number}}
+
+      <br />
+
+      Date of Birth : {{serialized_data.date_of_birth}}
+
+      <br />
+
+      Username : {{serialized_data.username}}
+
+      <br />
+
+      Password : {{serialized_data.password}}
+
+      <br />
+      <br/>
+
+      &nbsp;
+
+      <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+        Return &nbsp; <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      </a>
+    </form>
+    </div>
+
+    <br />
+</body>
+
+{% endblock %}

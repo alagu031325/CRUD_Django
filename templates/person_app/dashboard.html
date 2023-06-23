@@ -1,0 +1,116 @@
+{% extends 'person_app/base.html' %} 
+
+{% block content %}
+
+<h5>Welcome, {{user}}! 👋</h5>
+
+<hr />
+
+{% if records %}
+<a class="btn btn-outline-primary btn-sm" href="{% url 'create-record' %}">
+  Create a new record &nbsp;
+  <i class="fa fa-plus-circle" aria-hidden="true"></i>
+</a>
+{% endif %}
+<hr />
+
+{% if status_code %}
+  <p>Status Code: {{ status_code }} : Kindly choose an ID in the below list to delete</p>
+{% endif %}
+
+<div class="card">
+  <div class="card-header">
+      <strong>Search the existing records</strong>
+  </div>
+  <div class="card-body">
+      <form method="get" autocomplete="off" action = "{% url 'filter-records' %}" >
+        {{filtersform}}
+        <button class="btn btn-primary" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+</div>
+<br>
+
+{% if querysets %}
+
+<h4> Search Results : </h4>
+  <table class="table table-hover table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Date of Birth</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for queryset in querysets %}
+        <tr>
+          <td>{{queryset.id}}</td>
+          <td>{{queryset.first_name}}</td>
+    
+          <td>{{queryset.last_name}}</td>
+    
+          <td>{{queryset.age}}</td>
+    
+          <td>{{queryset.email_id}}</td>
+          <td>{{queryset.phone_number}}</td>
+          <td>{{queryset.date_of_birth}}</td>
+        </tr>
+      </tbody>
+{% endfor %} 
+{% endif %}
+
+{% if records %}
+<table class="table table-hover table-bordered">
+  <h4> List of Records: </h4>
+  <thead class="table-light">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">User Name</th>
+      <th scope="col">Password</th>
+      <!-- <th scope="col">Creation Date</th> -->
+      <th scope="col"> View </th>
+    </tr>
+  </thead>
+
+  <tbody>
+     {% for record in records %}
+
+    <tr>
+      <td>{{record.id}}</td>
+      <td>{{record.first_name}}</td>
+
+      <td>{{record.last_name}}</td>
+
+      <td>{{record.age}}</td>
+
+      <td>{{record.email_id}}</td>
+      <td>{{record.phone_number}}</td>
+      <td>{{record.date_of_birth}}</td>
+      <td>{{record.username}}</td>
+      <td>{{record.password}}</td>
+      <!-- <td>{{record.creation_date}}</td> -->
+      <td>
+        <a class="btn btn-success btn-sm" href="{% url 'record' record.id %}">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </a>
+      </td>
+    </tr>
+
+    {% endfor %} 
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}
